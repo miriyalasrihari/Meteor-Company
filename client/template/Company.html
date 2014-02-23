@@ -1,0 +1,88 @@
+<head>
+	<title>Meteor - Company</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div>
+		{{> Body}}
+	</div>
+</body>
+
+<template name="Body">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container padl30">
+			<h3>Srihari Miriyala{{VVV}}</h3>
+		</div>
+	</div>
+	<div class="container">
+		{{# if showSignUpForm}}
+		{{> SignUp}}
+		{{/if}}
+		{{# if showSignInForm}}
+		{{> Login}}
+		{{/if}}
+		{{# if showTpltWelcome}}
+		{{> Welcome}}
+		{{/if}}
+	</div>
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container textcenter">
+			© 2014 Miriyala Inc.
+		</div>
+	</div>
+</template>
+
+<template name="Login">
+	<form class="form-signin" role="form">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		{{#if error}}
+		<div class="alert alert-error">
+			{{error}}
+		</div>
+		{{/if}}
+		<input type="email" class="form-control mtrTxtEmail" placeholder="Email address" required autofocus />
+		<input type="password" class="form-control mtrTxtPassword" placeholder="Password" required />
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me" />
+			Remember me </label>
+		<input class="btn btn-lg btn-primary btn-block mtrSignIn" type="button" value="Sign In" />
+		<a href="javascript:void(0);" class="mtrShowSignUpForm">Sign Up</a>
+	</form>
+</template>
+
+<template name="SignUp">
+	<form class="form-signin" role="form">
+		<h2 class="form-signin-heading">New user registration</h2>
+		{{#if error}}
+		<div class="alert alert-error">
+			{{error}}
+		</div>
+		{{/if}}
+		<input type="text" class="form-control mtrTxtFirstName" placeholder="First Name" required autofocus />
+		<input type="text" class="form-control mtrTxtLastName" placeholder="Last Name" required  />
+
+		<input type="text" class="form-control mtrTxtEmail" placeholder="Email address" required />
+		<input type="text" class="form-control mtrTxtDoB" placeholder="Date of Birth" required  />
+		<input type="password" class="form-control mtrTxtPassword" placeholder="Password" required />
+		<input class="btn btn-lg btn-primary btn-block mtrSignUp" type="button" value="Sign Up" />
+		<a href="javascript:void(0);" class="mtrShowSignInForm">Sign In</a>
+	</form>
+</template>
+
+<template name="Welcome">
+	{{#each arrayify MySelf}}
+	<div title="hover here {{name}}">
+		{{value}}
+	</div>
+	{{/each}}
+</template>
