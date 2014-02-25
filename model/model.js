@@ -1,6 +1,12 @@
 Users = new Meteor.Collection("Users");
+
 UserIds = new Meteor.Collection("UserIds");
 
+UserIds._collection._ensureIndex({
+	created : 1
+}, {
+	expireAfterSeconds : 3600
+});
 var NonEmptyString = Match.Where(function(x) {
 	check(x, String);
 	return x.length !== 0;
@@ -12,7 +18,7 @@ Meteor.methods({
 			Email : NonEmptyString,
 			Password : NonEmptyString
 		});
-		return Users.findOne(options);;
+		return Users.findOne(options);
 	},
 	RegisterUser : function(options) {
 		check(options, {
@@ -26,5 +32,14 @@ Meteor.methods({
 			Date : new Date()
 		});
 		return Users.insert(options);
+	},
+	GetUserById : function(options) {
+		check(options, {
+			UserId : NonEmptyString
+		});
+		return Users.findOne({
+			UserId : options.UserId
+		});
 	}
+
 });
